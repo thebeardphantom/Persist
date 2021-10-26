@@ -12,7 +12,7 @@ namespace BeardPhantom.Identify.Editor
 
         private const string TOOLTIP = "Click to toggle GameObject tracking. Context-click for additional options.";
 
-        private static readonly Color _trackedColor = new Color(1f, 0f, 0f, 0.75f);
+        private static readonly Color _trackedColor = new Color(1f, 0f, 0f, 0.7f);
 
         private static readonly Color _untrackedColor = new Color(1f, 1f, 1f, 0.125f);
 
@@ -50,7 +50,8 @@ namespace BeardPhantom.Identify.Editor
             TryInitializeGUI();
             var size = selectionRect.size;
             size.x = size.y;
-            var offset = new Vector2(-16, 0);
+            // align icon just past the visibility tools
+            var offset = new Vector2(32 - selectionRect.x, 0);
 
             SetupContent(ref selectionRect, size, offset);
             using (new GUIContentColorScope(_trackedColor))
@@ -62,19 +63,22 @@ namespace BeardPhantom.Identify.Editor
         private static void OnFinishedDefaultHeaderGUI(UnityEditor.Editor editor)
         {
             var target = editor.target as GameObject;
-            if (target == null)
+            if (target == null || PrefabUtility.IsPartOfPrefabAsset(target))
             {
                 return;
             }
 
+            TryInitializeGUI();
+
             var isTracked = ScenePersistenceRoot.IsTracked(target);
+            var isPrefabInstanceRoot = PrefabUtility.IsAnyPrefabInstanceRoot(target);
+            var rect = EditorGUILayout.GetControlRect(true,
+                isPrefabInstanceRoot ? EditorGUIUtility.singleLineHeight : 2f);
+            var size = new Vector2(20f, 20f);
+            var offset = new Vector2(5f, isPrefabInstanceRoot ? 0f : -14f);
+            SetupContent(ref rect, size, offset);
             using (new GUIContentColorScope(isTracked ? _trackedColor : _untrackedColor))
             {
-                TryInitializeGUI();
-                var rect = EditorGUILayout.GetControlRect(true, 2f);
-                var size = new Vector2(20f, 20f);
-                var offset = new Vector2(5f, -14f);
-                SetupContent(ref rect, size, offset);
                 if (GUI.Button(rect, _trackedIconHeaderContent, _style))
                 {
                     if (Event.current.button == 1)

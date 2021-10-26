@@ -90,16 +90,6 @@ namespace BeardPhantom.Identify
         private void OnValidate()
         {
             ValidateHideFlags();
-            EditorApplication.delayCall += () =>
-            {
-                // Delay for multiple reasons. On first creation there will be no tracked objects,
-                // meaning this object will be destroyed immediately.
-                // Secondly, you cannot call DestroyImmediate in OnValidate().
-                if (TrackedObjects.Count == 0)
-                {
-                    Undo.DestroyObjectImmediate(gameObject);
-                }
-            };
         }
 
         private void OnDestroy()
