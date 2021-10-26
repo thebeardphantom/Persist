@@ -41,8 +41,7 @@ public partial class ScenePersistenceRoot
 
         Undo.RecordObject(this, $"Enable tracking {gObj}");
         TrackedObjects.Add(TrackedObject.Create(gObj, CreateID(gObj)));
-        EditorSceneManager.MarkSceneDirty(gameObject.scene);
-        EditorApplication.RepaintHierarchyWindow();
+        RefreshScene();
     }
 
     private void TryRemoveInternal(GameObject gObj)
@@ -73,6 +72,8 @@ public partial class ScenePersistenceRoot
             return;
         }
 
+        ValidateHideFlags();
+
         // Check if GameObject has been moved to another scene or has been destroyed
         for (var i = TrackedObjects.Count - 1; i >= 0; i--)
         {
@@ -86,6 +87,7 @@ public partial class ScenePersistenceRoot
 
     private void OnValidate()
     {
+        ValidateHideFlags();
         EditorApplication.delayCall += () =>
         {
             // Delay for multiple reasons. On first creation there will be no tracked objects,
@@ -100,8 +102,41 @@ public partial class ScenePersistenceRoot
 
     private void OnDestroy()
     {
+        RefreshScene();
+    }
+
+    private void RefreshScene()
+    {
         EditorSceneManager.MarkSceneDirty(gameObject.scene);
         EditorApplication.RepaintHierarchyWindow();
+    }
+
+    private void OnTransformParentChanged()
+    {
+        transform.SetParent(null);
+    }
+
+    private void ValidateHideFlags()
+    {
+        var settings = IdentifyUserSettings.GetOrCreateSettings();
+        var revealPersistenceRoots = settings.RevealPersistenceRoots;
+
+        var newHideFlags = revealPersistenceRoots ? HideFlags.NotEditable : HideFlags.HideInHierarchy;
+        if (gameObject.hideFlags != newHideFlags)
+        {
+            gameObject.hideFlags = newHideFlags;
+            if (newHideFlags == HideFlags.NotEditable)
+            {
+                hideFlags = HideFlags.NotEditable;
+            }
+
+            if (Selection.activeObject == gameObject)
+            {
+                Selection.activeObject = null;
+            }
+
+            RefreshScene();
+        }
     }
 
     #endregion

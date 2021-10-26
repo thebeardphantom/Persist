@@ -69,12 +69,9 @@ public partial class ScenePersistenceRoot : MonoBehaviour, IEnumerable<TrackedOb
 
     private static ScenePersistenceRoot CreateScenePersistenceRoot(Scene scene)
     {
-        var obj = new GameObject("Scene Persistence Root")
-        {
-            hideFlags = HideFlags.HideInHierarchy | HideFlags.NotEditable
-        };
+        var obj = new GameObject("Scene Persistence Root");
         var scenePersistenceRoot = obj.AddComponent<ScenePersistenceRoot>();
-        scenePersistenceRoot.hideFlags = HideFlags.NotEditable;
+        scenePersistenceRoot.ValidateHideFlags();
         SceneManager.MoveGameObjectToScene(obj, scene);
         EditorSceneManager.MarkSceneDirty(scene);
         return scenePersistenceRoot;
