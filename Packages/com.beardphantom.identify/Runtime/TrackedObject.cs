@@ -12,13 +12,13 @@ namespace BeardPhantom.Identify
         public GameObject GameObject { get; private set; }
 
         [field: SerializeField]
-        public PropertyName ID { get; private set; }
+        public Hash128 ID { get; private set; }
 
         #endregion
 
         #region Methods
 
-        internal static TrackedObject Create(GameObject gameObject, PropertyName id)
+        internal static TrackedObject Create(GameObject gameObject, Hash128 id)
         {
             return new TrackedObject
             {

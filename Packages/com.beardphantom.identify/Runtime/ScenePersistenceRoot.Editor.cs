@@ -28,10 +28,10 @@ namespace BeardPhantom.Identify
             }
         }
 
-        private static PropertyName CreateID(Object gObj)
+        private static Hash128 CreateID(Object gObj)
         {
             var globalObjectId = GlobalObjectId.GetGlobalObjectIdSlow(gObj);
-            return new PropertyName(globalObjectId.ToString());
+            return Hash128.Compute(globalObjectId.ToString());
         }
 
         private void TryAddInternal(GameObject gObj)
@@ -80,9 +80,15 @@ namespace BeardPhantom.Identify
             for (var i = TrackedObjects.Count - 1; i >= 0; i--)
             {
                 var trackedObject = TrackedObjects[i];
-                if (trackedObject.GameObject == null || trackedObject.GameObject.scene != gameObject.scene)
+                var trackedGObj = trackedObject.GameObject;
+                if (trackedGObj == null || trackedGObj.scene != gameObject.scene)
                 {
                     RemoveAtIndex(i);
+                }
+
+                if (!trackedObject.ID.isValid)
+                {
+                    TrackedObjects[i] = TrackedObject.Create(trackedGObj, CreateID(trackedGObj));
                 }
             }
         }
@@ -99,6 +105,11 @@ namespace BeardPhantom.Identify
 
         private void RefreshScene()
         {
+            if (Application.isPlaying)
+            {
+                return;
+            }
+
             EditorSceneManager.MarkSceneDirty(gameObject.scene);
             EditorApplication.RepaintHierarchyWindow();
         }
