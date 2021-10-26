@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [DisallowMultipleComponent]
-public partial class ScenePersistenceRoot : MonoBehaviour
+public partial class ScenePersistenceRoot : MonoBehaviour, IEnumerable<TrackedObject>
 {
     #region Fields
 
@@ -17,11 +18,7 @@ public partial class ScenePersistenceRoot : MonoBehaviour
 
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     [field: SerializeField]
-    private List<GameObject> TrackedObjects { get; set; } = new List<GameObject>();
-
-    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    [field: SerializeField]
-    private List<PropertyName> TrackedIDs { get; set; } = new List<PropertyName>();
+    private List<TrackedObject> TrackedObjects { get; set; } = new List<TrackedObject>();
 
     #endregion
 
@@ -55,7 +52,7 @@ public partial class ScenePersistenceRoot : MonoBehaviour
                 }
             }
 
-            if (createIfNotExists)
+            if (createIfNotExists && !Application.isPlaying)
             {
                 scenePersistenceRoot = CreateScenePersistenceRoot(scene);
                 return true;
@@ -83,9 +80,29 @@ public partial class ScenePersistenceRoot : MonoBehaviour
         return scenePersistenceRoot;
     }
 
+    /// <inheritdoc />
+    public IEnumerator<TrackedObject> GetEnumerator()
+    {
+        return TrackedObjects.GetEnumerator();
+    }
+
     private bool IsTrackedInternal(GameObject gObj)
     {
-        return TrackedObjects.Contains(gObj);
+        foreach (var trackedObj in TrackedObjects)
+        {
+            if (trackedObj.GameObject == gObj)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <inheritdoc />
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return ((IEnumerable)TrackedObjects).GetEnumerator();
     }
 
     #endregion
