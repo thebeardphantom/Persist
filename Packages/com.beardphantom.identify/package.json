@@ -1,0 +1,12 @@
+{
+  "name": "com.beardphantom.identify",
+  "displayName": "Identify",
+  "version": "0.0.1",
+  "unity": "2020.3",
+  "description": "A seamless way to uniquely identify GameObjects in your scenes.",
+  "keywords": [
+    "Persistence"
+  ],
+  "category": "Framework",
+  "type": "library"
+}

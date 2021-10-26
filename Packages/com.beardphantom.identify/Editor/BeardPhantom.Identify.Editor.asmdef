@@ -1,0 +1,18 @@
+{
+    "name": "BeardPhantom.Identify.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b95e3ac45a63f044bb1398c8c642613e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
