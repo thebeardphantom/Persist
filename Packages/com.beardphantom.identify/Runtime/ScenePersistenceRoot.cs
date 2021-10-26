@@ -5,102 +5,105 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[DisallowMultipleComponent]
-public partial class ScenePersistenceRoot : MonoBehaviour, IEnumerable<TrackedObject>
+namespace BeardPhantom.Identify
 {
-    #region Fields
-
-    private static readonly List<GameObject> _rootList = new List<GameObject>();
-
-    #endregion
-
-    #region Properties
-
-    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    [field: SerializeField]
-    private List<TrackedObject> TrackedObjects { get; set; } = new List<TrackedObject>();
-
-    #endregion
-
-    #region Methods
-
-    public static bool IsTracked(GameObject gObj)
+    [DisallowMultipleComponent]
+    public partial class ScenePersistenceRoot : MonoBehaviour, IEnumerable<TrackedObject>
     {
-        return gObj.scene.IsValid()
-            && TryFindForScene(gObj.scene, out var scenePersistenceRoot)
-            && scenePersistenceRoot.IsTrackedInternal(gObj);
-    }
+        #region Fields
 
-    public static bool TryFindForScene(
-        Scene scene,
-        out ScenePersistenceRoot scenePersistenceRoot,
-        bool createIfNotExists = false)
-    {
-        if (!scene.IsValid())
+        private static readonly List<GameObject> _rootList = new List<GameObject>();
+
+        #endregion
+
+        #region Properties
+
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+        [field: SerializeField]
+        private List<TrackedObject> TrackedObjects { get; set; } = new List<TrackedObject>();
+
+        #endregion
+
+        #region Methods
+
+        public static bool IsTracked(GameObject gObj)
         {
-            throw new Exception($"Scene is invalid {scene}");
+            return gObj.scene.IsValid()
+                && TryFindForScene(gObj.scene, out var scenePersistenceRoot)
+                && scenePersistenceRoot.IsTrackedInternal(gObj);
         }
 
-        try
+        public static bool TryFindForScene(
+            Scene scene,
+            out ScenePersistenceRoot scenePersistenceRoot,
+            bool createIfNotExists = false)
         {
-            scene.GetRootGameObjects(_rootList);
-            foreach (var root in _rootList)
+            if (!scene.IsValid())
             {
-                if (root.TryGetComponent(out scenePersistenceRoot))
+                throw new Exception($"Scene is invalid {scene}");
+            }
+
+            try
+            {
+                scene.GetRootGameObjects(_rootList);
+                foreach (var root in _rootList)
+                {
+                    if (root.TryGetComponent(out scenePersistenceRoot))
+                    {
+                        return true;
+                    }
+                }
+
+                if (createIfNotExists && !Application.isPlaying)
+                {
+                    scenePersistenceRoot = CreateScenePersistenceRoot(scene);
+                    return true;
+                }
+
+                scenePersistenceRoot = default;
+                return false;
+            }
+            finally
+            {
+                _rootList.Clear();
+            }
+        }
+
+        private static ScenePersistenceRoot CreateScenePersistenceRoot(Scene scene)
+        {
+            var obj = new GameObject("Scene Persistence Root");
+            var scenePersistenceRoot = obj.AddComponent<ScenePersistenceRoot>();
+            scenePersistenceRoot.ValidateHideFlags();
+            SceneManager.MoveGameObjectToScene(obj, scene);
+            EditorSceneManager.MarkSceneDirty(scene);
+            return scenePersistenceRoot;
+        }
+
+        /// <inheritdoc />
+        public IEnumerator<TrackedObject> GetEnumerator()
+        {
+            return TrackedObjects.GetEnumerator();
+        }
+
+        private bool IsTrackedInternal(GameObject gObj)
+        {
+            foreach (var trackedObj in TrackedObjects)
+            {
+                if (trackedObj.GameObject == gObj)
                 {
                     return true;
                 }
             }
 
-            if (createIfNotExists && !Application.isPlaying)
-            {
-                scenePersistenceRoot = CreateScenePersistenceRoot(scene);
-                return true;
-            }
-
-            scenePersistenceRoot = default;
             return false;
         }
-        finally
+
+        /// <inheritdoc />
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            _rootList.Clear();
-        }
-    }
-
-    private static ScenePersistenceRoot CreateScenePersistenceRoot(Scene scene)
-    {
-        var obj = new GameObject("Scene Persistence Root");
-        var scenePersistenceRoot = obj.AddComponent<ScenePersistenceRoot>();
-        scenePersistenceRoot.ValidateHideFlags();
-        SceneManager.MoveGameObjectToScene(obj, scene);
-        EditorSceneManager.MarkSceneDirty(scene);
-        return scenePersistenceRoot;
-    }
-
-    /// <inheritdoc />
-    public IEnumerator<TrackedObject> GetEnumerator()
-    {
-        return TrackedObjects.GetEnumerator();
-    }
-
-    private bool IsTrackedInternal(GameObject gObj)
-    {
-        foreach (var trackedObj in TrackedObjects)
-        {
-            if (trackedObj.GameObject == gObj)
-            {
-                return true;
-            }
+            return ((IEnumerable)TrackedObjects).GetEnumerator();
         }
 
-        return false;
+        #endregion
     }
-
-    /// <inheritdoc />
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return ((IEnumerable)TrackedObjects).GetEnumerator();
-    }
-
-    #endregion
 }

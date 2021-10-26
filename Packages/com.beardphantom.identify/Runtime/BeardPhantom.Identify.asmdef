@@ -1,3 +1,14 @@
 {
-	"name": "BeardPhantom.Identify"
+    "name": "BeardPhantom.Identify",
+    "rootNamespace": "BeardPhantom.Identify",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -1,29 +1,32 @@
 ﻿using System;
 using UnityEngine;
 
-[Serializable]
-public struct TrackedObject
+namespace BeardPhantom.Identify
 {
-    #region Properties
-
-    [field: SerializeField]
-    public GameObject GameObject { get; private set; }
-
-    [field: SerializeField]
-    public PropertyName ID { get; private set; }
-
-    #endregion
-
-    #region Methods
-
-    internal static TrackedObject Create(GameObject gameObject, PropertyName id)
+    [Serializable]
+    public struct TrackedObject
     {
-        return new TrackedObject
-        {
-            GameObject = gameObject,
-            ID = id
-        };
-    }
+        #region Properties
 
-    #endregion
+        [field: SerializeField]
+        public GameObject GameObject { get; private set; }
+
+        [field: SerializeField]
+        public PropertyName ID { get; private set; }
+
+        #endregion
+
+        #region Methods
+
+        internal static TrackedObject Create(GameObject gameObject, PropertyName id)
+        {
+            return new TrackedObject
+            {
+                GameObject = gameObject,
+                ID = id
+            };
+        }
+
+        #endregion
+    }
 }

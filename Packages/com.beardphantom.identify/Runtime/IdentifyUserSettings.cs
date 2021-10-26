@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-public partial class IdentifyUserSettings : ScriptableObject
+namespace BeardPhantom.Identify
 {
-    #region Properties
+    public partial class IdentifyUserSettings : ScriptableObject
+    {
+        #region Properties
 
-    [field: SerializeField]
-    public bool RevealPersistenceRoots { get; private set; }
+        [field: SerializeField]
+        public bool RevealPersistenceRoots { get; private set; }
 
-    #endregion
+        #endregion
+    }
 }
