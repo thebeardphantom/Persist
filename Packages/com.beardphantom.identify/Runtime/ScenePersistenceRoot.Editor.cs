@@ -1,7 +1,10 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace BeardPhantom.Identify
 {
@@ -9,61 +12,58 @@ namespace BeardPhantom.Identify
     [AddComponentMenu("")]
     public partial class ScenePersistenceRoot
     {
+        #region Fields
+
+        private static readonly List<GameObject> _sceneRoots = new List<GameObject>();
+
+        private static readonly List<IPersistableScript> _persistableScripts = new List<IPersistableScript>();
+
+        private static readonly List<Object> _allPersistableScripts = new List<Object>();
+
+        #endregion
+
         #region Methods
 
-        public static void TryAdd(GameObject gObj)
+        public void Rebuild()
         {
-            if (gObj.scene.IsValid())
+            try
             {
-                TryFindForScene(gObj.scene, out var scenePersistenceRoot, true);
-                scenePersistenceRoot.TryAddInternal(gObj);
+                var sw = Stopwatch.StartNew();
+                var scene = gameObject.scene;
+                scene.GetRootGameObjects(_sceneRoots);
+
+                foreach (var root in _sceneRoots)
+                {
+                    root.GetComponentsInChildren(_persistableScripts);
+                    foreach (var persistableScript in _persistableScripts)
+                    {
+                        _allPersistableScripts.Add((Object)persistableScript);
+                    }
+                }
+
+                TrackedObjects.Clear();
+                if (_allPersistableScripts.Count > 0)
+                {
+                    var globalObjectIds = new GlobalObjectId[_allPersistableScripts.Count];
+                    GlobalObjectId.GetGlobalObjectIdsSlow(_allPersistableScripts.ToArray(), globalObjectIds);
+
+                    for (var i = 0; i < _allPersistableScripts.Count; i++)
+                    {
+                        var component = (Component)_allPersistableScripts[i];
+                        var id = globalObjectIds[i];
+                        var hash128 = Hash128.Compute(id.ToString());
+                        TrackedObjects.Add(TrackedObject.Create(component, hash128));
+                    }
+                }
+
+                Debug.Log($"Rebuild took {sw.Elapsed.TotalMilliseconds}ms");
+                sw.Stop();
             }
-        }
-
-        public static void TryRemove(GameObject gObj)
-        {
-            if (gObj.scene.IsValid() && TryFindForScene(gObj.scene, out var scenePersistenceRoot))
+            finally
             {
-                scenePersistenceRoot.TryRemoveInternal(gObj);
-            }
-        }
-
-        private static Hash128 CreateID(Object gObj)
-        {
-            var globalObjectId = GlobalObjectId.GetGlobalObjectIdSlow(gObj);
-            return Hash128.Compute(globalObjectId.ToString());
-        }
-
-        private void TryAddInternal(GameObject gObj)
-        {
-            if (IsTrackedInternal(gObj))
-            {
-                return;
-            }
-
-            Undo.RecordObject(this, $"Enable tracking {gObj}");
-            TrackedObjects.Add(TrackedObject.Create(gObj, CreateID(gObj)));
-            RefreshScene();
-        }
-
-        private void TryRemoveInternal(GameObject gObj)
-        {
-            var index = TrackedObjects.FindIndex(tracked => tracked.GameObject == gObj);
-            if (index >= 0)
-            {
-                RemoveAtIndex(index);
-            }
-        }
-
-        private void RemoveAtIndex(int index)
-        {
-            var trackedObject = TrackedObjects[index];
-            Undo.RecordObject(this, $"Disable tracking {trackedObject.GameObject}");
-            TrackedObjects.RemoveAt(index);
-
-            if (TrackedObjects.Count == 0)
-            {
-                Undo.DestroyObjectImmediate(gameObject);
+                _allPersistableScripts.Clear();
+                _roots.Clear();
+                _persistableScripts.Clear();
             }
         }
 
@@ -75,22 +75,6 @@ namespace BeardPhantom.Identify
             }
 
             ValidateHideFlags();
-
-            // Check if GameObject has been moved to another scene or has been destroyed
-            for (var i = TrackedObjects.Count - 1; i >= 0; i--)
-            {
-                var trackedObject = TrackedObjects[i];
-                var trackedGObj = trackedObject.GameObject;
-                if (trackedGObj == null || trackedGObj.scene != gameObject.scene)
-                {
-                    RemoveAtIndex(i);
-                }
-
-                if (!trackedObject.ID.isValid)
-                {
-                    TrackedObjects[i] = TrackedObject.Create(trackedGObj, CreateID(trackedGObj));
-                }
-            }
         }
 
         private void OnValidate()

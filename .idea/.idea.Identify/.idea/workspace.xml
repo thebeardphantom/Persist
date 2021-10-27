@@ -7,13 +7,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83a38f5397d94e36a22efa3369c82390761600/30/7567394a/EditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83a38f5397d94e36a22efa3369c82390761600/a1/0c4c1d66/Editor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83a38f5397d94e36a22efa3369c82390761600/15/a26850a2/GameObjectInspector.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TestBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="201z48FghjR0XyrC6m04GIQrbXZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34980348" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3499006" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -30,10 +36,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="6248">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="6248" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -51,7 +57,9 @@
       <updated>1635226691327</updated>
       <workItem from="1635226696848" duration="6068000" />
       <workItem from="1635233039009" duration="2916000" />
-      <workItem from="1635237713451" duration="144000" />
+      <workItem from="1635237713451" duration="741000" />
+      <workItem from="1635247187965" duration="4911000" />
+      <workItem from="1635295321191" duration="3191000" />
     </task>
     <servers />
   </component>
@@ -59,5 +67,37 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/com.beardphantom.identify/Runtime/ScenePersistenceRoot.cs</url>
+          <line>41</line>
+          <properties documentPath="D:\Mika\WorkRoot\UPM\Identify\Packages\com.beardphantom.identify\Runtime\ScenePersistenceRoot.cs" initialLine="41" containingFunctionPresentation="method 'TryFindForScene'">
+            <startOffsets>
+              <option value="1165" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1199" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Packages/com.beardphantom.identify/Runtime/ScenePersistenceRoot.cs</url>
+          <line>86</line>
+          <properties documentPath="D:\Mika\WorkRoot\UPM\Identify\Packages\com.beardphantom.identify\Runtime\ScenePersistenceRoot.cs" initialLine="86" containingFunctionPresentation="method 'CreateSceneSaveBlob'">
+            <startOffsets>
+              <option value="2760" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2781" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +11,7 @@ namespace BeardPhantom.Identify
     {
         #region Fields
 
-        private static readonly List<GameObject> _rootList = new List<GameObject>();
+        private static readonly List<ScenePersistenceRoot> _roots = new List<ScenePersistenceRoot>();
 
         #endregion
 
@@ -26,13 +25,6 @@ namespace BeardPhantom.Identify
 
         #region Methods
 
-        public static bool IsTracked(GameObject gObj)
-        {
-            return gObj.scene.IsValid()
-                && TryFindForScene(gObj.scene, out var scenePersistenceRoot)
-                && scenePersistenceRoot.IsTrackedInternal(gObj);
-        }
-
         public static bool TryFindForScene(
             Scene scene,
             out ScenePersistenceRoot scenePersistenceRoot,
@@ -45,16 +37,16 @@ namespace BeardPhantom.Identify
 
             try
             {
-                scene.GetRootGameObjects(_rootList);
-                foreach (var root in _rootList)
+                foreach (var spr in FindObjectsOfType<ScenePersistenceRoot>())
                 {
-                    if (root.TryGetComponent(out scenePersistenceRoot))
+                    if (spr.gameObject.scene == scene)
                     {
+                        scenePersistenceRoot = spr;
                         return true;
                     }
                 }
 
-                if (createIfNotExists && !Application.isPlaying)
+                if (createIfNotExists)
                 {
                     scenePersistenceRoot = CreateScenePersistenceRoot(scene);
                     return true;
@@ -65,7 +57,7 @@ namespace BeardPhantom.Identify
             }
             finally
             {
-                _rootList.Clear();
+                _roots.Clear();
             }
         }
 
@@ -73,29 +65,47 @@ namespace BeardPhantom.Identify
         {
             var obj = new GameObject("Scene Persistence Root");
             var scenePersistenceRoot = obj.AddComponent<ScenePersistenceRoot>();
-            scenePersistenceRoot.ValidateHideFlags();
             SceneManager.MoveGameObjectToScene(obj, scene);
-            EditorSceneManager.MarkSceneDirty(scene);
+            scenePersistenceRoot.ValidateHideFlags();
+            scenePersistenceRoot.RefreshScene();
             return scenePersistenceRoot;
+        }
+
+        public SceneSaveBlob CreateSceneSaveBlob()
+        {
+            var sceneSaveBlob = new SceneSaveBlob(gameObject.scene.name, new List<ObjectSaveBlob>());
+            foreach (var trackedObject in TrackedObjects)
+            {
+                var persistableScript = (IPersistableScript)trackedObject.Component;
+                var persistData = persistableScript.Save();
+                if (persistData != null)
+                {
+                    sceneSaveBlob.SaveBlobs.Add(new ObjectSaveBlob(trackedObject.ID, persistData));
+                }
+            }
+
+            return sceneSaveBlob;
+        }
+
+        public void LoadSceneSaveBlob(in SceneSaveBlob sceneSaveBlob)
+        {
+            foreach (var objectSaveBlob in sceneSaveBlob.SaveBlobs)
+            {
+                var id = objectSaveBlob.ObjectId;
+                var trackedObjectIndex = TrackedObjects.FindIndex(to => to.ID == id);
+                if (trackedObjectIndex >= 0)
+                {
+                    var trackedObject = TrackedObjects[trackedObjectIndex];
+                    var persistableScript = (IPersistableScript)trackedObject.Component;
+                    persistableScript.Load(objectSaveBlob.PersistData);
+                }
+            }
         }
 
         /// <inheritdoc />
         public IEnumerator<TrackedObject> GetEnumerator()
         {
             return TrackedObjects.GetEnumerator();
-        }
-
-        private bool IsTrackedInternal(GameObject gObj)
-        {
-            foreach (var trackedObj in TrackedObjects)
-            {
-                if (trackedObj.GameObject == gObj)
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         /// <inheritdoc />

@@ -9,7 +9,7 @@ namespace BeardPhantom.Identify
         #region Properties
 
         [field: SerializeField]
-        public GameObject GameObject { get; private set; }
+        public Component Component { get; private set; }
 
         [field: SerializeField]
         public Hash128 ID { get; private set; }
@@ -18,11 +18,11 @@ namespace BeardPhantom.Identify
 
         #region Methods
 
-        internal static TrackedObject Create(GameObject gameObject, Hash128 id)
+        internal static TrackedObject Create(Component component, Hash128 id)
         {
             return new TrackedObject
             {
-                GameObject = gameObject,
+                Component = component,
                 ID = id
             };
         }
