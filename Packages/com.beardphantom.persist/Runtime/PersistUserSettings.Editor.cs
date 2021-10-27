@@ -6,35 +6,41 @@ using UnityEditor;
 using UnityEditorInternal;
 using Object = UnityEngine.Object;
 
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
-    public partial class IdentifyUserSettings
+    public partial class PersistUserSettings
     {
         #region Methods
 
-        public static IdentifyUserSettings GetOrCreateSettings()
+        public static PersistUserSettings GetOrCreateSettings()
         {
             var settings = LoadFromDisk();
             if (settings == null)
             {
-                settings = CreateInstance<IdentifyUserSettings>();
+                settings = CreateInstance<PersistUserSettings>();
                 SaveToDisk(settings);
             }
 
             return settings;
         }
 
-        private static IdentifyUserSettings LoadFromDisk()
+        private static string GetSettingsPath()
         {
-            var path = Path.Combine(Environment.CurrentDirectory, "UserSettings", "IdentifyUserSettings.asset");
+            var path = Path.Combine(Environment.CurrentDirectory, "UserSettings", "PersistUserSettings.asset");
+            return path;
+        }
+
+        private static PersistUserSettings LoadFromDisk()
+        {
+            var path = GetSettingsPath();
             var settings = InternalEditorUtility.LoadSerializedFileAndForget(path)
-                .FirstOrDefault() as IdentifyUserSettings;
+                .FirstOrDefault() as PersistUserSettings;
             return settings;
         }
 
-        private static void SaveToDisk(IdentifyUserSettings settings)
+        private static void SaveToDisk(PersistUserSettings settings)
         {
-            var path = Path.Combine(Environment.CurrentDirectory, "UserSettings", "IdentifyUserSettings.asset");
+            var path = GetSettingsPath();
             InternalEditorUtility.SaveToSerializedFileAndForget(new Object[]
                 {
                     settings
@@ -46,7 +52,7 @@ namespace BeardPhantom.Identify
         [SettingsProvider]
         private static SettingsProvider CreateSettingsProvider()
         {
-            return new SettingsProvider("Preferences/Identify", SettingsScope.User)
+            return new SettingsProvider("Preferences/Persist", SettingsScope.User)
             {
                 guiHandler = searchContext =>
                 {

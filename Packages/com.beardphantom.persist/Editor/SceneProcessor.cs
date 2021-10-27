@@ -2,7 +2,7 @@
 using UnityEditor.Build.Reporting;
 using UnityEngine.SceneManagement;
 
-namespace BeardPhantom.Identify.Editor
+namespace BeardPhantom.Persist.Editor
 {
     public class SceneProcessor : IProcessSceneWithReport
     {
@@ -18,7 +18,7 @@ namespace BeardPhantom.Identify.Editor
         /// <inheritdoc />
         public void OnProcessScene(Scene scene, BuildReport report)
         {
-            IdentifyEditorUtility.HandleSceneRootRequirements(scene);
+            PersistEditorUtility.HandleSceneRootRequirements(scene);
         }
 
         #endregion

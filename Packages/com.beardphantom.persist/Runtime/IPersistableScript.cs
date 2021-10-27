@@ -1,4 +1,4 @@
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
     public interface IPersistableScript
     {

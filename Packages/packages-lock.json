@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.beardphantom.identify": {
-      "version": "file:com.beardphantom.identify",
+    "com.beardphantom.persist": {
+      "version": "file:com.beardphantom.persist",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

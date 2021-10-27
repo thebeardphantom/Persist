@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
     [DisallowMultipleComponent]
     public partial class ScenePersistenceRoot : MonoBehaviour, IEnumerable<TrackedObject>

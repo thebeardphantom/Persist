@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
     public static class PersistUtility
     {

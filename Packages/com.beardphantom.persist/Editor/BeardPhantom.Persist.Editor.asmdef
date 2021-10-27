@@ -1,6 +1,6 @@
 {
-    "name": "BeardPhantom.Identify.Editor",
-    "rootNamespace": "BeardPhantom.Identify.Editor",
+    "name": "BeardPhantom.Persist.Editor",
+    "rootNamespace": "BeardPhantom.Persist.Editor",
     "references": [
         "GUID:b95e3ac45a63f044bb1398c8c642613e"
     ],

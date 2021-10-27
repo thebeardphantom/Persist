@@ -1,6 +1,6 @@
 {
-    "name": "BeardPhantom.Identify",
-    "rootNamespace": "BeardPhantom.Identify",
+    "name": "BeardPhantom.Persist",
+    "rootNamespace": "BeardPhantom.Persist",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

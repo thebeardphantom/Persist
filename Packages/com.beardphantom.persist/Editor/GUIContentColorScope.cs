@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace BeardPhantom.Identify.Editor
+namespace BeardPhantom.Persist.Editor
 {
     internal readonly struct GUIContentColorScope : IDisposable
     {

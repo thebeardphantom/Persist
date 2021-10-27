@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
-    public partial class IdentifyUserSettings : ScriptableObject
+    public partial class PersistUserSettings : ScriptableObject
     {
         #region Properties
 

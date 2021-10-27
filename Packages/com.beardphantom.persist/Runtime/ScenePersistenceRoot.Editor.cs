@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
     [ExecuteAlways]
     [AddComponentMenu("")]
@@ -105,7 +105,7 @@ namespace BeardPhantom.Identify
 
         private void ValidateHideFlags()
         {
-            var settings = IdentifyUserSettings.GetOrCreateSettings();
+            var settings = PersistUserSettings.GetOrCreateSettings();
             var revealPersistenceRoots = settings.RevealPersistenceRoots;
 
             var newHideFlags = revealPersistenceRoots ? HideFlags.NotEditable : HideFlags.HideInHierarchy;

@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af9a89b9-05c9-4dc6-a281-2292ab282403" name="Changes" comment="" />
+    <list default="true" id="c3dde9a2-0cfc-460e-82c9-d53bc17a505b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83a38f5397d94e36a22efa3369c82390761600/30/7567394a/EditorGUI.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83a38f5397d94e36a22efa3369c82390761600/a1/0c4c1d66/Editor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83a38f5397d94e36a22efa3369c82390761600/15/a26850a2/GameObjectInspector.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TestBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProjectId" id="201z48FghjR0XyrC6m04GIQrbXZ" />
+  <component name="ProjectId" id="204Q2tAtRbCGAeNEh3LEXM8VAIe" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3499006" />
-    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -36,10 +28,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="6248">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="6248" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -50,16 +42,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="af9a89b9-05c9-4dc6-a281-2292ab282403" name="Changes" comment="" />
-      <created>1635226691327</created>
+      <changelist id="c3dde9a2-0cfc-460e-82c9-d53bc17a505b" name="Changes" comment="" />
+      <created>1635301179414</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1635226691327</updated>
-      <workItem from="1635226696848" duration="6068000" />
-      <workItem from="1635233039009" duration="2916000" />
-      <workItem from="1635237713451" duration="741000" />
-      <workItem from="1635247187965" duration="4911000" />
-      <workItem from="1635295321191" duration="3818000" />
+      <updated>1635301179414</updated>
+      <workItem from="1635301188155" duration="282000" />
     </task>
     <servers />
   </component>

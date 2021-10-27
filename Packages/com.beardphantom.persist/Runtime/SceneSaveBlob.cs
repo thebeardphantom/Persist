@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
     [Serializable]
     public struct SceneSaveBlob

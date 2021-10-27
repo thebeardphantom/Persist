@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace BeardPhantom.Identify
+namespace BeardPhantom.Persist
 {
     [Serializable]
     public struct TrackedObject

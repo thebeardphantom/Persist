@@ -1,0 +1,13 @@
+{
+  "name": "com.beardphantom.persist",
+  "displayName": "Persist",
+  "version": "0.0.1",
+  "unity": "2020.3",
+  "description": "A seamless way to uniquely identify scene components and save/load their state between app runs.",
+  "keywords": [
+    "Persistence",
+	"Save/Load"
+  ],
+  "category": "Framework",
+  "type": "library"
+}
