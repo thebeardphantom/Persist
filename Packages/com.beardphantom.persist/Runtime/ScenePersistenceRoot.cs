@@ -66,8 +66,9 @@ namespace BeardPhantom.Persist
             var obj = new GameObject("Scene Persistence Root");
             var scenePersistenceRoot = obj.AddComponent<ScenePersistenceRoot>();
             SceneManager.MoveGameObjectToScene(obj, scene);
-            scenePersistenceRoot.ValidateHideFlags();
+#if UNITY_EDITOR
             scenePersistenceRoot.RefreshScene();
+#endif
             return scenePersistenceRoot;
         }
 
