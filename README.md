@@ -1,3 +1,5 @@
+[![openupm](https://img.shields.io/npm/v/com.beardphantom.persist?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.beardphantom.persist/)
+
 # Persist
 A seamless way to allow components in your Unity scenes to be uniquely and safely identifiable, and persistable between application runs.
 
