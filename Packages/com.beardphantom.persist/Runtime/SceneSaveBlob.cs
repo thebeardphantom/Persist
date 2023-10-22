@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace BeardPhantom.Persist
 {
@@ -21,28 +20,6 @@ namespace BeardPhantom.Persist
         {
             SceneName = sceneName;
             SaveBlobs = saveBlobs;
-        }
-
-        #endregion
-    }
-
-    [Serializable]
-    public struct ObjectSaveBlob
-    {
-        #region Fields
-
-        public Hash128 ObjectId;
-
-        public object PersistData;
-
-        #endregion
-
-        #region Constructors
-
-        public ObjectSaveBlob(Hash128 objectId, object persistData)
-        {
-            ObjectId = objectId;
-            PersistData = persistData;
         }
 
         #endregion

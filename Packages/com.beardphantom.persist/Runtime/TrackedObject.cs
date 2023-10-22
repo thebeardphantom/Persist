@@ -12,13 +12,13 @@ namespace BeardPhantom.Persist
         public Component Component { get; private set; }
 
         [field: SerializeField]
-        public Hash128 ID { get; private set; }
+        public string ID { get; private set; }
 
         #endregion
 
         #region Methods
 
-        internal static TrackedObject Create(Component component, Hash128 id)
+        internal static TrackedObject Create(Component component, string id)
         {
             return new TrackedObject
             {

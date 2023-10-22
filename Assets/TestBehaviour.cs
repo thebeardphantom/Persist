@@ -1,4 +1,5 @@
 ﻿using BeardPhantom.Persist;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,21 +12,11 @@ namespace BeardPhantom.Identify
         #region Types
 
         [Serializable]
-        private class PersistData
+        public class PersistData
         {
             #region Fields
 
             public int Test;
-
-            #endregion
-        }
-
-        [Serializable]
-        private class SaveTest
-        {
-            #region Fields
-
-            public List<SceneSaveBlob> SceneSaveBlobs;
 
             #endregion
         }
@@ -50,16 +41,18 @@ namespace BeardPhantom.Identify
             Debug.Log(persistData.Test);
         }
 
-        // private void Start()
-        // {
-        //     var sceneSaveBlobs = new List<SceneSaveBlob>();
-        //     PersistUtility.CreateSceneSaveBlobs(sceneSaveBlobs);
-        //     Debug.Log(JsonUtility.ToJson(new SaveTest
-        //         {
-        //             SceneSaveBlobs = sceneSaveBlobs
-        //         },
-        //         true));
-        // }
+        private void Start()
+        {
+            var sceneSaveBlobs = new List<SceneSaveBlob>();
+            PersistUtility.CreateSceneSaveBlobs(sceneSaveBlobs);
+            var json = JsonConvert.SerializeObject(
+                new SaveTest
+                {
+                    SceneSaveBlobs = sceneSaveBlobs
+                },
+                Formatting.Indented);
+            Debug.Log(json);
+        }
 
         #endregion
     }

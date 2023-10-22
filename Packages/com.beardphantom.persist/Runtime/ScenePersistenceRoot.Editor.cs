@@ -14,11 +14,11 @@ namespace BeardPhantom.Persist
     {
         #region Fields
 
-        private static readonly List<GameObject> _sceneRoots = new List<GameObject>();
+        private static readonly List<GameObject> _sceneRoots = new();
 
-        private static readonly List<IPersistableScript> _persistableScripts = new List<IPersistableScript>();
+        private static readonly List<IPersistableScript> _persistableScripts = new();
 
-        private static readonly List<Object> _allPersistableScripts = new List<Object>();
+        private static readonly List<Object> _allPersistableScripts = new();
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace BeardPhantom.Persist
 
                 foreach (var root in _sceneRoots)
                 {
-                    root.GetComponentsInChildren(_persistableScripts);
+                    root.GetComponentsInChildren(true, _persistableScripts);
                     foreach (var persistableScript in _persistableScripts)
                     {
                         _allPersistableScripts.Add((Object)persistableScript);
@@ -50,9 +50,8 @@ namespace BeardPhantom.Persist
                     for (var i = 0; i < _allPersistableScripts.Count; i++)
                     {
                         var component = (Component)_allPersistableScripts[i];
-                        var id = globalObjectIds[i];
-                        var hash128 = Hash128.Compute(id.ToString());
-                        TrackedObjects.Add(TrackedObject.Create(component, hash128));
+                        var id = globalObjectIds[i].ToString();
+                        TrackedObjects.Add(TrackedObject.Create(component, id));
                     }
                 }
 
@@ -62,7 +61,6 @@ namespace BeardPhantom.Persist
             finally
             {
                 _allPersistableScripts.Clear();
-                _roots.Clear();
                 _persistableScripts.Clear();
             }
         }

@@ -9,17 +9,10 @@ namespace BeardPhantom.Persist
     [DisallowMultipleComponent]
     public partial class ScenePersistenceRoot : MonoBehaviour, IEnumerable<TrackedObject>
     {
-        #region Fields
-
-        private static readonly List<ScenePersistenceRoot> _roots = new List<ScenePersistenceRoot>();
-
-        #endregion
-
         #region Properties
 
-        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
         [field: SerializeField]
-        private List<TrackedObject> TrackedObjects { get; set; } = new List<TrackedObject>();
+        private List<TrackedObject> TrackedObjects { get; set; } = new();
 
         #endregion
 
@@ -35,30 +28,23 @@ namespace BeardPhantom.Persist
                 throw new Exception($"Scene is invalid {scene}");
             }
 
-            try
+            foreach (var spr in FindObjectsOfType<ScenePersistenceRoot>())
             {
-                foreach (var spr in FindObjectsOfType<ScenePersistenceRoot>())
+                if (spr.gameObject.scene == scene)
                 {
-                    if (spr.gameObject.scene == scene)
-                    {
-                        scenePersistenceRoot = spr;
-                        return true;
-                    }
-                }
-
-                if (createIfNotExists)
-                {
-                    scenePersistenceRoot = CreateScenePersistenceRoot(scene);
+                    scenePersistenceRoot = spr;
                     return true;
                 }
+            }
 
-                scenePersistenceRoot = default;
-                return false;
-            }
-            finally
+            if (createIfNotExists)
             {
-                _roots.Clear();
+                scenePersistenceRoot = CreateScenePersistenceRoot(scene);
+                return true;
             }
+
+            scenePersistenceRoot = default;
+            return false;
         }
 
         private static ScenePersistenceRoot CreateScenePersistenceRoot(Scene scene)
@@ -79,10 +65,12 @@ namespace BeardPhantom.Persist
             {
                 var persistableScript = (IPersistableScript)trackedObject.Component;
                 var persistData = persistableScript.Save();
-                if (persistData != null)
+                if (persistData == null)
                 {
-                    sceneSaveBlob.SaveBlobs.Add(new ObjectSaveBlob(trackedObject.ID, persistData));
+                    continue;
                 }
+
+                sceneSaveBlob.SaveBlobs.Add(new ObjectSaveBlob(trackedObject.ID, persistData));
             }
 
             return sceneSaveBlob;
@@ -92,14 +80,23 @@ namespace BeardPhantom.Persist
         {
             foreach (var objectSaveBlob in sceneSaveBlob.SaveBlobs)
             {
-                var id = objectSaveBlob.ObjectId;
-                var trackedObjectIndex = TrackedObjects.FindIndex(to => to.ID == id);
-                if (trackedObjectIndex >= 0)
+                int trackedObjectIndex;
+                for (trackedObjectIndex = 0; trackedObjectIndex < TrackedObjects.Count; trackedObjectIndex++)
                 {
-                    var trackedObject = TrackedObjects[trackedObjectIndex];
-                    var persistableScript = (IPersistableScript)trackedObject.Component;
-                    persistableScript.Load(objectSaveBlob.PersistData);
+                    if (TrackedObjects[trackedObjectIndex].ID == objectSaveBlob.ID)
+                    {
+                        break;
+                    }
                 }
+
+                if (trackedObjectIndex < 0 || trackedObjectIndex >= TrackedObjects.Count)
+                {
+                    continue;
+                }
+
+                var trackedObject = TrackedObjects[trackedObjectIndex];
+                var persistableScript = (IPersistableScript)trackedObject.Component;
+                persistableScript.Load(objectSaveBlob.PersistData);
             }
         }
 

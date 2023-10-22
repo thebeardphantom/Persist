@@ -1,23 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3dde9a2-0cfc-460e-82c9-d53bc17a505b" name="Changes" comment="" />
+    <list default="true" id="c3dde9a2-0cfc-460e-82c9-d53bc17a505b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/SaveTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SaveTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/ObjectSaveBlob.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/ObjectSaveBlob.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Persist/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Persist/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/A.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/A.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TestBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TestBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/BeardPhantom.Persist.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/BeardPhantom.Persist.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/PersistUserSettings.Editor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/PersistUserSettings.Editor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/ScenePersistenceRoot.Editor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/ScenePersistenceRoot.Editor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/ScenePersistenceRoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/ScenePersistenceRoot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/SceneSaveBlob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/SceneSaveBlob.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/TrackedObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/Runtime/TrackedObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/com.beardphantom.persist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/com.beardphantom.persist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd14705e8f094afcb566740ab5e8c02d1a2c00/c3/1c1ec841/Hash128.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="204Q2tAtRbCGAeNEh3LEXM8VAIe" />
   <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Discover.Launch.Via.Unity" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\mika\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\mika\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\mika\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/IdentifiableObjects.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\Mika\WorkRoot\UPM\Persist\Builds" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\_Content\WorkRoot\UnityEditors\2021.3.31f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath C:\_Content\WorkRoot\UPM\Persist -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\_Content\WorkRoot\UPM\Persist" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\_Content\WorkRoot\UnityEditors\2021.3.31f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\_Content\WorkRoot\UPM\Persist -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\_Content\WorkRoot\UPM\Persist" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -28,10 +105,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="45684">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="45684" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -48,12 +125,36 @@
       <option name="presentableId" value="Default" />
       <updated>1635301179414</updated>
       <workItem from="1635301188155" duration="282000" />
+      <workItem from="1636942924112" duration="23000" />
+      <workItem from="1698011284499" duration="3318000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/TestBehaviour.cs</url>
+          <line>46</line>
+          <properties documentPath="C:\_Content\WorkRoot\UPM\Persist\Assets\TestBehaviour.cs" initialLine="45" containingFunctionPresentation="Method 'Start'">
+            <startOffsets>
+              <option value="960" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1012" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

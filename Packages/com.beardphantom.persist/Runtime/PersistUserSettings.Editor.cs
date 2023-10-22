@@ -11,6 +11,12 @@ namespace BeardPhantom.Persist
 {
     public partial class PersistUserSettings
     {
+        #region Fields
+
+        private static readonly string _revealPersistenceRootsPropertyPath = $"<{nameof(RevealPersistenceRoots)}>k__BackingField";
+
+        #endregion
+
         #region Methods
 
         public static PersistUserSettings GetOrCreateSettings()
@@ -39,10 +45,11 @@ namespace BeardPhantom.Persist
             return settings;
         }
 
-        private static void SaveToDisk(PersistUserSettings settings)
+        private static void SaveToDisk(Object settings)
         {
             var path = GetSettingsPath();
-            InternalEditorUtility.SaveToSerializedFileAndForget(new Object[]
+            InternalEditorUtility.SaveToSerializedFileAndForget(
+                new[]
                 {
                     settings
                 },
@@ -60,7 +67,7 @@ namespace BeardPhantom.Persist
                     var settings = GetOrCreateSettings();
                     var serializedObject = new SerializedObject(settings);
                     using var changeCheckScope = new EditorGUI.ChangeCheckScope();
-                    var revealProperty = serializedObject.FindProperty("<RevealPersistenceRoots>k__BackingField");
+                    var revealProperty = serializedObject.FindProperty(_revealPersistenceRootsPropertyPath);
                     EditorGUILayout.PropertyField(revealProperty);
                     if (changeCheckScope.changed)
                     {
@@ -69,10 +76,11 @@ namespace BeardPhantom.Persist
                         EditorApplication.QueuePlayerLoopUpdate();
                     }
                 },
-                keywords = new HashSet<string>(new[]
-                {
-                    "Reveal Persistence Roots"
-                })
+                keywords = new HashSet<string>(
+                    new[]
+                    {
+                        "Reveal Persistence Roots"
+                    })
             };
         }
 
